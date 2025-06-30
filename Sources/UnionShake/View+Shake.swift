@@ -44,12 +44,14 @@ extension View {
     /// - Returns: A view modified with the shake effect.
     public func shake<T: Equatable>(
         on trigger: T,
+        enabled: Bool = true,
         amount: CGFloat = 5,
         shakesPerUnit: CGFloat = 3
     ) -> some View {
         ShakeContainer(
             trigger: trigger,
             amount: amount,
+            enabled: enabled,
             shakesPerUnit: shakesPerUnit,
             content: self
         )

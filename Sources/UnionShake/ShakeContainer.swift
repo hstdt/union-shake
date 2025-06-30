@@ -10,6 +10,7 @@ import SwiftUI
 struct ShakeContainer<T: Equatable, Content: View>: View {
     let trigger: T
     let amount: CGFloat
+    let enabled: Bool
     let shakesPerUnit: CGFloat
     let content: Content
 
@@ -19,6 +20,7 @@ struct ShakeContainer<T: Equatable, Content: View>: View {
         content
             .modifier(ShakeEffect(amount: amount, shakesPerUnit: shakesPerUnit, animatableData: version))
             .onChange(of: trigger) { _ in
+                guard enabled else { return }
                 withAnimation {
                     version += 1
                 }
